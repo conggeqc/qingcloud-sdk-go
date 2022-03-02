@@ -14,6 +14,9 @@
 // | limitations under the License.
 // +-------------------------------------------------------------------------
 
+
+
+
 package service
 
 import (
@@ -36,343 +39,799 @@ type NicService struct {
 
 type NicServiceProperties struct {
 	// QingCloud Zone ID
-	Zone *string `json:"zone" name:"zone"` // Required
-}
+		Zone *string `json:"zone" name:"zone"` // Required
+	}
 
-func (s *QingCloudService) Nic(zone string) (*NicService, error) {
+func (s *QingCloudService) Nic(zone string,) (*NicService, error) {
 	properties := &NicServiceProperties{
 		Zone: &zone,
+		
 	}
 
 	return &NicService{Config: s.Config, Properties: properties}, nil
 }
 
-// Documentation URL: https://docs.qingcloud.com/api/nic/attach_nics.html
-func (s *NicService) AttachNics(i *AttachNicsInput) (*AttachNicsOutput, error) {
-	if i == nil {
-		i = &AttachNicsInput{}
-	}
-	o := &data.Operation{
-		Config:        s.Config,
-		Properties:    s.Properties,
-		APIName:       "AttachNics",
-		RequestMethod: "GET",
-	}
 
-	x := &AttachNicsOutput{}
-	r, err := request.New(o, i, x)
-	if err != nil {
-		return nil, err
-	}
+	
+	
+	
+	
 
-	err = r.Send()
-	if err != nil {
-		return nil, err
-	}
+	
 
-	return x, err
-}
-
-type AttachNicsInput struct {
-	Instance *string   `json:"instance" name:"instance" location:"params"` // Required
-	Nics     []*string `json:"nics" name:"nics" location:"params"`         // Required
-}
-
-func (v *AttachNicsInput) Validate() error {
-
-	if v.Instance == nil {
-		return errors.ParameterRequiredError{
-			ParameterName: "Instance",
-			ParentName:    "AttachNicsInput",
+	
+	// Documentation URL: https://docs.qingcloud.com/api/nic/attach_nics.html
+	func (s *NicService) AttachNics(i *AttachNicsInput) (*AttachNicsOutput, error) {
+		if i == nil {
+			i = &AttachNicsInput{}
 		}
-	}
-
-	if len(v.Nics) == 0 {
-		return errors.ParameterRequiredError{
-			ParameterName: "Nics",
-			ParentName:    "AttachNicsInput",
+		o := &data.Operation{
+			Config:        s.Config,
+			Properties:    s.Properties,
+			APIName:       "AttachNics",
+			RequestMethod: "GET",
 		}
-	}
 
-	return nil
-}
-
-type AttachNicsOutput struct {
-	Message *string `json:"message" name:"message"`
-	Action  *string `json:"action" name:"action" location:"elements"`
-	JobID   *string `json:"job_id" name:"job_id" location:"elements"`
-	RetCode *int    `json:"ret_code" name:"ret_code" location:"elements"`
-}
-
-// Documentation URL: https://docs.qingcloud.com/api/nic/create_nics.html
-func (s *NicService) CreateNics(i *CreateNicsInput) (*CreateNicsOutput, error) {
-	if i == nil {
-		i = &CreateNicsInput{}
-	}
-	o := &data.Operation{
-		Config:        s.Config,
-		Properties:    s.Properties,
-		APIName:       "CreateNics",
-		RequestMethod: "GET",
-	}
-
-	x := &CreateNicsOutput{}
-	r, err := request.New(o, i, x)
-	if err != nil {
-		return nil, err
-	}
-
-	err = r.Send()
-	if err != nil {
-		return nil, err
-	}
-
-	return x, err
-}
-
-type CreateNicsInput struct {
-	Count      *int      `json:"count" name:"count" default:"1" location:"params"`
-	NICName    *string   `json:"nic_name" name:"nic_name" location:"params"`
-	PrivateIPs []*string `json:"private_ips" name:"private_ips" location:"params"`
-	VxNet      *string   `json:"vxnet" name:"vxnet" location:"params"` // Required
-}
-
-func (v *CreateNicsInput) Validate() error {
-
-	if v.VxNet == nil {
-		return errors.ParameterRequiredError{
-			ParameterName: "VxNet",
-			ParentName:    "CreateNicsInput",
+		x := &AttachNicsOutput{}
+		r, err := request.New(o, i, x)
+		if err != nil {
+			return nil, err
 		}
+
+		err = r.Send()
+		if err != nil {
+			return nil, err
+		}
+
+		return x, err
 	}
 
-	return nil
-}
-
-type CreateNicsOutput struct {
-	Message *string  `json:"message" name:"message"`
-	Action  *string  `json:"action" name:"action" location:"elements"`
-	Nics    []*NICIP `json:"nics" name:"nics" location:"elements"`
-	RetCode *int     `json:"ret_code" name:"ret_code" location:"elements"`
-}
-
-// Documentation URL: https://docs.qingcloud.com/api/nic/delete_nics.html
-func (s *NicService) DeleteNics(i *DeleteNicsInput) (*DeleteNicsOutput, error) {
-	if i == nil {
-		i = &DeleteNicsInput{}
-	}
-	o := &data.Operation{
-		Config:        s.Config,
-		Properties:    s.Properties,
-		APIName:       "DeleteNics",
-		RequestMethod: "GET",
-	}
-
-	x := &DeleteNicsOutput{}
-	r, err := request.New(o, i, x)
-	if err != nil {
-		return nil, err
-	}
-
-	err = r.Send()
-	if err != nil {
-		return nil, err
-	}
-
-	return x, err
-}
-
-type DeleteNicsInput struct {
+	type AttachNicsInput struct {
+		
+			Instance *string `json:"instance" name:"instance" location:"params"` // Required
 	Nics []*string `json:"nics" name:"nics" location:"params"` // Required
-}
+	}
 
-func (v *DeleteNicsInput) Validate() error {
+	func (v *AttachNicsInput) Validate() error {
+		
+	
 
-	if len(v.Nics) == 0 {
-		return errors.ParameterRequiredError{
-			ParameterName: "Nics",
-			ParentName:    "DeleteNicsInput",
+	
+		
+		
+		
+			
+				if v.Instance == nil {
+					return errors.ParameterRequiredError{
+						ParameterName: "Instance",
+						ParentName: "AttachNicsInput",
+					}
+				}
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+				if len(v.Nics) == 0 {
+					return errors.ParameterRequiredError{
+						ParameterName: "Nics",
+						ParentName: "AttachNicsInput",
+					}
+				}
+			
+			
+			
+			
+			
+			
+		
+	
+
+		
+	
+
+	
+
+		
+	
+
+	
+
+
+		return nil
+	}
+
+	type AttachNicsOutput struct {
+		Message *string `json:"message" name:"message"`
+			    Action *string `json:"action" name:"action" location:"elements"` 
+	JobID *string `json:"job_id" name:"job_id" location:"elements"` 
+	RetCode *int `json:"ret_code" name:"ret_code" location:"elements"` 
+	}
+
+
+	
+	
+	
+	
+
+	
+
+	
+	// Documentation URL: https://docs.qingcloud.com/api/nic/create_nics.html
+	func (s *NicService) CreateNics(i *CreateNicsInput) (*CreateNicsOutput, error) {
+		if i == nil {
+			i = &CreateNicsInput{}
 		}
+		o := &data.Operation{
+			Config:        s.Config,
+			Properties:    s.Properties,
+			APIName:       "CreateNics",
+			RequestMethod: "GET",
+		}
+
+		x := &CreateNicsOutput{}
+		r, err := request.New(o, i, x)
+		if err != nil {
+			return nil, err
+		}
+
+		err = r.Send()
+		if err != nil {
+			return nil, err
+		}
+
+		return x, err
 	}
 
-	return nil
-}
-
-type DeleteNicsOutput struct {
-	Message *string `json:"message" name:"message"`
-	Action  *string `json:"action" name:"action" location:"elements"`
-	RetCode *int    `json:"ret_code" name:"ret_code" location:"elements"`
-}
-
-// Documentation URL: https://docs.qingcloud.com/api/nic/describe_nics.html
-func (s *NicService) DescribeNics(i *DescribeNicsInput) (*DescribeNicsOutput, error) {
-	if i == nil {
-		i = &DescribeNicsInput{}
-	}
-	o := &data.Operation{
-		Config:        s.Config,
-		Properties:    s.Properties,
-		APIName:       "DescribeNics",
-		RequestMethod: "GET",
+	type CreateNicsInput struct {
+		
+			Count *int `json:"count" name:"count" default:"1" location:"params"` 
+	NICName *string `json:"nic_name" name:"nic_name" location:"params"` 
+	PrivateIPs []*string `json:"private_ips" name:"private_ips" location:"params"` 
+	VxNet *string `json:"vxnet" name:"vxnet" location:"params"` // Required
 	}
 
-	x := &DescribeNicsOutput{}
-	r, err := request.New(o, i, x)
-	if err != nil {
-		return nil, err
+	func (v *CreateNicsInput) Validate() error {
+		
+	
+
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+			
+			
+			
+			
+			
+		
+	
+		
+		
+		
+			
+				if v.VxNet == nil {
+					return errors.ParameterRequiredError{
+						ParameterName: "VxNet",
+						ParentName: "CreateNicsInput",
+					}
+				}
+			
+			
+			
+		
+
+		
+
+		
+	
+
+		
+	
+
+	
+
+		
+	
+
+	
+
+
+		return nil
 	}
 
-	err = r.Send()
-	if err != nil {
-		return nil, err
+	type CreateNicsOutput struct {
+		Message *string `json:"message" name:"message"`
+			    Action *string `json:"action" name:"action" location:"elements"` 
+	Nics []*NICIP `json:"nics" name:"nics" location:"elements"` 
+	RetCode *int `json:"ret_code" name:"ret_code" location:"elements"` 
 	}
 
-	return x, err
-}
 
-type DescribeNicsInput struct {
-	Instances []*string `json:"instances" name:"instances" location:"params"`
-	Limit     *int      `json:"limit" name:"limit" default:"20" location:"params"`
-	NICName   *string   `json:"nic_name" name:"nic_name" location:"params"`
-	Nics      []*string `json:"nics" name:"nics" location:"params"`
-	Offset    *int      `json:"offset" name:"offset" default:"0" location:"params"`
-	Owner     *string   `json:"owner" name:"owner" location:"params"`
-	ProjectID *string   `json:"project_id" name:"project_id" location:"params"`
+	
+	
+	
+	
+
+	
+
+	
+	// Documentation URL: https://docs.qingcloud.com/api/nic/delete_nics.html
+	func (s *NicService) DeleteNics(i *DeleteNicsInput) (*DeleteNicsOutput, error) {
+		if i == nil {
+			i = &DeleteNicsInput{}
+		}
+		o := &data.Operation{
+			Config:        s.Config,
+			Properties:    s.Properties,
+			APIName:       "DeleteNics",
+			RequestMethod: "GET",
+		}
+
+		x := &DeleteNicsOutput{}
+		r, err := request.New(o, i, x)
+		if err != nil {
+			return nil, err
+		}
+
+		err = r.Send()
+		if err != nil {
+			return nil, err
+		}
+
+		return x, err
+	}
+
+	type DeleteNicsInput struct {
+		
+			Nics []*string `json:"nics" name:"nics" location:"params"` // Required
+	}
+
+	func (v *DeleteNicsInput) Validate() error {
+		
+	
+
+	
+		
+		
+		
+
+		
+
+		
+			
+				if len(v.Nics) == 0 {
+					return errors.ParameterRequiredError{
+						ParameterName: "Nics",
+						ParentName: "DeleteNicsInput",
+					}
+				}
+			
+			
+			
+			
+			
+			
+		
+	
+
+		
+	
+
+	
+
+		
+	
+
+	
+
+
+		return nil
+	}
+
+	type DeleteNicsOutput struct {
+		Message *string `json:"message" name:"message"`
+			    Action *string `json:"action" name:"action" location:"elements"` 
+	RetCode *int `json:"ret_code" name:"ret_code" location:"elements"` 
+	}
+
+
+	
+	
+	
+	
+
+	
+
+	
+	// Documentation URL: https://docs.qingcloud.com/api/nic/describe_nics.html
+	func (s *NicService) DescribeNics(i *DescribeNicsInput) (*DescribeNicsOutput, error) {
+		if i == nil {
+			i = &DescribeNicsInput{}
+		}
+		o := &data.Operation{
+			Config:        s.Config,
+			Properties:    s.Properties,
+			APIName:       "DescribeNics",
+			RequestMethod: "GET",
+		}
+
+		x := &DescribeNicsOutput{}
+		r, err := request.New(o, i, x)
+		if err != nil {
+			return nil, err
+		}
+
+		err = r.Send()
+		if err != nil {
+			return nil, err
+		}
+
+		return x, err
+	}
+
+	type DescribeNicsInput struct {
+		
+			Instances []*string `json:"instances" name:"instances" location:"params"` 
+	Limit *int `json:"limit" name:"limit" default:"20" location:"params"` 
+	NICName *string `json:"nic_name" name:"nic_name" location:"params"` 
+	Nics []*string `json:"nics" name:"nics" location:"params"` 
+	Offset *int `json:"offset" name:"offset" default:"0" location:"params"` 
+	Owner *string `json:"owner" name:"owner" location:"params"` 
+	ProjectID *string `json:"project_id" name:"project_id" location:"params"` 
 	// Status's available values: available, in-use
-	Status    *string   `json:"status" name:"status" location:"params"`
-	VxNetType []*int    `json:"vxnet_type" name:"vxnet_type" location:"params"`
-	VxNets    []*string `json:"vxnets" name:"vxnets" location:"params"`
-}
+		Status *string `json:"status" name:"status" location:"params"` 
+	VxNetType []*int `json:"vxnet_type" name:"vxnet_type" location:"params"` 
+	VxNets []*string `json:"vxnets" name:"vxnets" location:"params"` 
+	}
 
-func (v *DescribeNicsInput) Validate() error {
+	func (v *DescribeNicsInput) Validate() error {
+		
+	
 
-	if v.Status != nil {
-		statusValidValues := []string{"available", "in-use"}
-		statusParameterValue := fmt.Sprint(*v.Status)
+	
+		
+		
+		
 
-		statusIsValid := false
-		for _, value := range statusValidValues {
-			if value == statusParameterValue {
-				statusIsValid = true
-			}
+		
+
+		
+			
+			
+			
+			
+			
+			
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+			
+			
+			
+			
+			
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+				if v.Status != nil {
+					statusValidValues := []string{"available", "in-use"}
+					statusParameterValue := fmt.Sprint(*v.Status)
+
+					statusIsValid := false
+					for _, value := range statusValidValues {
+						if value == statusParameterValue {
+							statusIsValid = true
+						}
+					}
+
+					if !statusIsValid {
+						return errors.ParameterValueNotAllowedError{
+							ParameterName: "Status",
+							ParameterValue: statusParameterValue,
+							AllowedValues: statusValidValues,
+						}
+					}
+				}
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+			
+			
+			
+			
+			
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+			
+			
+			
+			
+			
+		
+	
+
+		
+	
+
+	
+
+		
+	
+
+	
+
+
+		return nil
+	}
+
+	type DescribeNicsOutput struct {
+		Message *string `json:"message" name:"message"`
+			    Action *string `json:"action" name:"action" location:"elements"` 
+	NICSet []*NIC `json:"nic_set" name:"nic_set" location:"elements"` 
+	RetCode *int `json:"ret_code" name:"ret_code" location:"elements"` 
+	TotalCount *int `json:"total_count" name:"total_count" location:"elements"` 
+	}
+
+
+	
+	
+	
+	
+
+	
+
+	
+	// Documentation URL: https://docs.qingcloud.com/api/nic/detach_nics.html
+	func (s *NicService) DetachNics(i *DetachNicsInput) (*DetachNicsOutput, error) {
+		if i == nil {
+			i = &DetachNicsInput{}
+		}
+		o := &data.Operation{
+			Config:        s.Config,
+			Properties:    s.Properties,
+			APIName:       "DetachNics",
+			RequestMethod: "GET",
 		}
 
-		if !statusIsValid {
-			return errors.ParameterValueNotAllowedError{
-				ParameterName:  "Status",
-				ParameterValue: statusParameterValue,
-				AllowedValues:  statusValidValues,
-			}
+		x := &DetachNicsOutput{}
+		r, err := request.New(o, i, x)
+		if err != nil {
+			return nil, err
 		}
-	}
 
-	return nil
-}
-
-type DescribeNicsOutput struct {
-	Message    *string `json:"message" name:"message"`
-	Action     *string `json:"action" name:"action" location:"elements"`
-	NICSet     []*NIC  `json:"nic_set" name:"nic_set" location:"elements"`
-	RetCode    *int    `json:"ret_code" name:"ret_code" location:"elements"`
-	TotalCount *int    `json:"total_count" name:"total_count" location:"elements"`
-}
-
-// Documentation URL: https://docs.qingcloud.com/api/nic/detach_nics.html
-func (s *NicService) DetachNics(i *DetachNicsInput) (*DetachNicsOutput, error) {
-	if i == nil {
-		i = &DetachNicsInput{}
-	}
-	o := &data.Operation{
-		Config:        s.Config,
-		Properties:    s.Properties,
-		APIName:       "DetachNics",
-		RequestMethod: "GET",
-	}
-
-	x := &DetachNicsOutput{}
-	r, err := request.New(o, i, x)
-	if err != nil {
-		return nil, err
-	}
-
-	err = r.Send()
-	if err != nil {
-		return nil, err
-	}
-
-	return x, err
-}
-
-type DetachNicsInput struct {
-	Nics []*string `json:"nics" name:"nics" location:"params"` // Required
-}
-
-func (v *DetachNicsInput) Validate() error {
-
-	if len(v.Nics) == 0 {
-		return errors.ParameterRequiredError{
-			ParameterName: "Nics",
-			ParentName:    "DetachNicsInput",
+		err = r.Send()
+		if err != nil {
+			return nil, err
 		}
+
+		return x, err
 	}
 
-	return nil
-}
-
-type DetachNicsOutput struct {
-	Message *string `json:"message" name:"message"`
-	Action  *string `json:"action" name:"action" location:"elements"`
-	JobID   *string `json:"job_id" name:"job_id" location:"elements"`
-	RetCode *int    `json:"ret_code" name:"ret_code" location:"elements"`
-}
-
-// Documentation URL: https://docs.qingcloud.com/api/nic/modify-nic-attributes.html
-func (s *NicService) ModifyNicAttributes(i *ModifyNicAttributesInput) (*ModifyNicAttributesOutput, error) {
-	if i == nil {
-		i = &ModifyNicAttributesInput{}
-	}
-	o := &data.Operation{
-		Config:        s.Config,
-		Properties:    s.Properties,
-		APIName:       "ModifyNicAttributes",
-		RequestMethod: "GET",
+	type DetachNicsInput struct {
+		
+			Nics []*string `json:"nics" name:"nics" location:"params"` // Required
 	}
 
-	x := &ModifyNicAttributesOutput{}
-	r, err := request.New(o, i, x)
-	if err != nil {
-		return nil, err
+	func (v *DetachNicsInput) Validate() error {
+		
+	
+
+	
+		
+		
+		
+
+		
+
+		
+			
+				if len(v.Nics) == 0 {
+					return errors.ParameterRequiredError{
+						ParameterName: "Nics",
+						ParentName: "DetachNicsInput",
+					}
+				}
+			
+			
+			
+			
+			
+			
+		
+	
+
+		
+	
+
+	
+
+		
+	
+
+	
+
+
+		return nil
 	}
 
-	err = r.Send()
-	if err != nil {
-		return nil, err
+	type DetachNicsOutput struct {
+		Message *string `json:"message" name:"message"`
+			    Action *string `json:"action" name:"action" location:"elements"` 
+	JobID *string `json:"job_id" name:"job_id" location:"elements"` 
+	RetCode *int `json:"ret_code" name:"ret_code" location:"elements"` 
 	}
 
-	return x, err
-}
 
-type ModifyNicAttributesInput struct {
-	NIC       *string `json:"nic" name:"nic" location:"params"` // Required
-	NICName   *string `json:"nic_name" name:"nic_name" location:"params"`
-	PrivateIP *string `json:"private_ip" name:"private_ip" location:"params"`
-	VxNet     *string `json:"vxnet" name:"vxnet" location:"params"`
-}
+	
+	
+	
+	
 
-func (v *ModifyNicAttributesInput) Validate() error {
+	
 
-	if v.NIC == nil {
-		return errors.ParameterRequiredError{
-			ParameterName: "NIC",
-			ParentName:    "ModifyNicAttributesInput",
+	
+	// Documentation URL: https://docs.qingcloud.com/api/nic/modify-nic-attributes.html
+	func (s *NicService) ModifyNicAttributes(i *ModifyNicAttributesInput) (*ModifyNicAttributesOutput, error) {
+		if i == nil {
+			i = &ModifyNicAttributesInput{}
 		}
+		o := &data.Operation{
+			Config:        s.Config,
+			Properties:    s.Properties,
+			APIName:       "ModifyNicAttributes",
+			RequestMethod: "GET",
+		}
+
+		x := &ModifyNicAttributesOutput{}
+		r, err := request.New(o, i, x)
+		if err != nil {
+			return nil, err
+		}
+
+		err = r.Send()
+		if err != nil {
+			return nil, err
+		}
+
+		return x, err
 	}
 
-	return nil
-}
+	type ModifyNicAttributesInput struct {
+		
+			NIC *string `json:"nic" name:"nic" location:"params"` // Required
+	NICName *string `json:"nic_name" name:"nic_name" location:"params"` 
+	PrivateIP *string `json:"private_ip" name:"private_ip" location:"params"` 
+	VxNet *string `json:"vxnet" name:"vxnet" location:"params"` 
+	}
 
-type ModifyNicAttributesOutput struct {
-	Message *string `json:"message" name:"message"`
-	Action  *string `json:"action" name:"action" location:"elements"`
-	RetCode *int    `json:"ret_code" name:"ret_code" location:"elements"`
-}
+	func (v *ModifyNicAttributesInput) Validate() error {
+		
+	
+
+	
+		
+		
+		
+			
+				if v.NIC == nil {
+					return errors.ParameterRequiredError{
+						ParameterName: "NIC",
+						ParentName: "ModifyNicAttributesInput",
+					}
+				}
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+
+		
+	
+
+	
+
+		
+	
+
+	
+
+
+		return nil
+	}
+
+	type ModifyNicAttributesOutput struct {
+		Message *string `json:"message" name:"message"`
+			    Action *string `json:"action" name:"action" location:"elements"` 
+	RetCode *int `json:"ret_code" name:"ret_code" location:"elements"` 
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

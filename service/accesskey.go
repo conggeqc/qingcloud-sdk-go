@@ -14,6 +14,9 @@
 // | limitations under the License.
 // +-------------------------------------------------------------------------
 
+
+
+
 package service
 
 import (
@@ -36,110 +39,285 @@ type AccesskeyService struct {
 
 type AccesskeyServiceProperties struct {
 	// QingCloud Zone ID
-	Zone *string `json:"zone" name:"zone"` // Required
-}
+		Zone *string `json:"zone" name:"zone"` // Required
+	}
 
-func (s *QingCloudService) Accesskey(zone string) (*AccesskeyService, error) {
+func (s *QingCloudService) Accesskey(zone string,) (*AccesskeyService, error) {
 	properties := &AccesskeyServiceProperties{
 		Zone: &zone,
+		
 	}
 
 	return &AccesskeyService{Config: s.Config, Properties: properties}, nil
 }
 
-func (s *AccesskeyService) DeleteAccessKeys(i *DeleteAccessKeysInput) (*DeleteAccessKeysOutput, error) {
-	if i == nil {
-		i = &DeleteAccessKeysInput{}
-	}
-	o := &data.Operation{
-		Config:        s.Config,
-		Properties:    s.Properties,
-		APIName:       "DeleteAccessKeys",
-		RequestMethod: "GET",
-	}
 
-	x := &DeleteAccessKeysOutput{}
-	r, err := request.New(o, i, x)
-	if err != nil {
-		return nil, err
-	}
+	
+	
+	
+	
 
-	err = r.Send()
-	if err != nil {
-		return nil, err
-	}
+	
 
-	return x, err
-}
-
-type DeleteAccessKeysInput struct {
-	AccessKeys []*string `json:"access_keys" name:"access_keys" location:"params"` // Required
-}
-
-func (v *DeleteAccessKeysInput) Validate() error {
-
-	if len(v.AccessKeys) == 0 {
-		return errors.ParameterRequiredError{
-			ParameterName: "AccessKeys",
-			ParentName:    "DeleteAccessKeysInput",
+	
+	
+	func (s *AccesskeyService) DeleteAccessKeys(i *DeleteAccessKeysInput) (*DeleteAccessKeysOutput, error) {
+		if i == nil {
+			i = &DeleteAccessKeysInput{}
 		}
+		o := &data.Operation{
+			Config:        s.Config,
+			Properties:    s.Properties,
+			APIName:       "DeleteAccessKeys",
+			RequestMethod: "GET",
+		}
+
+		x := &DeleteAccessKeysOutput{}
+		r, err := request.New(o, i, x)
+		if err != nil {
+			return nil, err
+		}
+
+		err = r.Send()
+		if err != nil {
+			return nil, err
+		}
+
+		return x, err
 	}
 
-	return nil
-}
-
-type DeleteAccessKeysOutput struct {
-	Message    *string   `json:"message" name:"message"`
-	AccessKeys []*string `json:"access_keys" name:"access_keys" location:"elements"`
-	Action     *string   `json:"action" name:"action" location:"elements"`
-	JobID      *string   `json:"job_id" name:"job_id" location:"elements"`
-	RetCode    *int      `json:"ret_code" name:"ret_code" location:"elements"`
-}
-
-func (s *AccesskeyService) DescribeAccessKeys(i *DescribeAccessKeysInput) (*DescribeAccessKeysOutput, error) {
-	if i == nil {
-		i = &DescribeAccessKeysInput{}
-	}
-	o := &data.Operation{
-		Config:        s.Config,
-		Properties:    s.Properties,
-		APIName:       "DescribeAccessKeys",
-		RequestMethod: "GET",
+	type DeleteAccessKeysInput struct {
+		
+			AccessKeys []*string `json:"access_keys" name:"access_keys" location:"params"` // Required
 	}
 
-	x := &DescribeAccessKeysOutput{}
-	r, err := request.New(o, i, x)
-	if err != nil {
-		return nil, err
+	func (v *DeleteAccessKeysInput) Validate() error {
+		
+	
+
+	
+		
+		
+		
+
+		
+
+		
+			
+				if len(v.AccessKeys) == 0 {
+					return errors.ParameterRequiredError{
+						ParameterName: "AccessKeys",
+						ParentName: "DeleteAccessKeysInput",
+					}
+				}
+			
+			
+			
+			
+			
+			
+		
+	
+
+		
+	
+
+	
+
+		
+	
+
+	
+
+
+		return nil
 	}
 
-	err = r.Send()
-	if err != nil {
-		return nil, err
+	type DeleteAccessKeysOutput struct {
+		Message *string `json:"message" name:"message"`
+			    AccessKeys []*string `json:"access_keys" name:"access_keys" location:"elements"` 
+	Action *string `json:"action" name:"action" location:"elements"` 
+	JobID *string `json:"job_id" name:"job_id" location:"elements"` 
+	RetCode *int `json:"ret_code" name:"ret_code" location:"elements"` 
 	}
 
-	return x, err
-}
 
-type DescribeAccessKeysInput struct {
-	AccessKeys []*string `json:"access_keys" name:"access_keys" location:"params"`
-	Limit      *int      `json:"limit" name:"limit" default:"20" location:"params"`
-	Offset     *int      `json:"offset" name:"offset" default:"0" location:"params"`
-	Owner      *string   `json:"owner" name:"owner" location:"params"`
-	SearchWord *string   `json:"search_word" name:"search_word" location:"params"`
-	Status     []*string `json:"status" name:"status" location:"params"`
-	Verbose    *int      `json:"verbose" name:"verbose" default:"0" location:"params"`
-}
+	
+	
+	
+	
 
-func (v *DescribeAccessKeysInput) Validate() error {
+	
 
-	return nil
-}
+	
+	
+	func (s *AccesskeyService) DescribeAccessKeys(i *DescribeAccessKeysInput) (*DescribeAccessKeysOutput, error) {
+		if i == nil {
+			i = &DescribeAccessKeysInput{}
+		}
+		o := &data.Operation{
+			Config:        s.Config,
+			Properties:    s.Properties,
+			APIName:       "DescribeAccessKeys",
+			RequestMethod: "GET",
+		}
 
-type DescribeAccessKeysOutput struct {
-	Message      *string      `json:"message" name:"message"`
-	AccessKeySet []*AccessKey `json:"access_key_set" name:"access_key_set" location:"elements"`
-	Action       *string      `json:"action" name:"action" location:"elements"`
-	RetCode      *int         `json:"ret_code" name:"ret_code" location:"elements"`
-	TotalCount   *int         `json:"total_count" name:"total_count" location:"elements"`
-}
+		x := &DescribeAccessKeysOutput{}
+		r, err := request.New(o, i, x)
+		if err != nil {
+			return nil, err
+		}
+
+		err = r.Send()
+		if err != nil {
+			return nil, err
+		}
+
+		return x, err
+	}
+
+	type DescribeAccessKeysInput struct {
+		
+			AccessKeys []*string `json:"access_keys" name:"access_keys" location:"params"` 
+	Limit *int `json:"limit" name:"limit" default:"20" location:"params"` 
+	Offset *int `json:"offset" name:"offset" default:"0" location:"params"` 
+	Owner *string `json:"owner" name:"owner" location:"params"` 
+	SearchWord *string `json:"search_word" name:"search_word" location:"params"` 
+	Status []*string `json:"status" name:"status" location:"params"` 
+	Verbose *int `json:"verbose" name:"verbose" default:"0" location:"params"` 
+	}
+
+	func (v *DescribeAccessKeysInput) Validate() error {
+		
+	
+
+	
+		
+		
+		
+
+		
+
+		
+			
+			
+			
+			
+			
+			
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+			
+			
+			
+			
+			
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+
+		
+	
+
+	
+
+		
+	
+
+	
+
+
+		return nil
+	}
+
+	type DescribeAccessKeysOutput struct {
+		Message *string `json:"message" name:"message"`
+			    AccessKeySet []*AccessKey `json:"access_key_set" name:"access_key_set" location:"elements"` 
+	Action *string `json:"action" name:"action" location:"elements"` 
+	RetCode *int `json:"ret_code" name:"ret_code" location:"elements"` 
+	TotalCount *int `json:"total_count" name:"total_count" location:"elements"` 
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -14,6 +14,9 @@
 // | limitations under the License.
 // +-------------------------------------------------------------------------
 
+
+
+
 package service
 
 import (
@@ -36,227 +39,613 @@ type ProjectService struct {
 
 type ProjectServiceProperties struct {
 	// QingCloud Zone ID
-	Zone *string `json:"zone" name:"zone"` // Required
-}
+		Zone *string `json:"zone" name:"zone"` // Required
+	}
 
-func (s *QingCloudService) Project(zone string) (*ProjectService, error) {
+func (s *QingCloudService) Project(zone string,) (*ProjectService, error) {
 	properties := &ProjectServiceProperties{
 		Zone: &zone,
+		
 	}
 
 	return &ProjectService{Config: s.Config, Properties: properties}, nil
 }
 
-func (s *ProjectService) AddProjectResourceItems(i *AddProjectResourceItemsInput) (*AddProjectResourceItemsOutput, error) {
-	if i == nil {
-		i = &AddProjectResourceItemsInput{}
-	}
-	o := &data.Operation{
-		Config:        s.Config,
-		Properties:    s.Properties,
-		APIName:       "AddProjectResourceItems",
-		RequestMethod: "GET",
-	}
 
-	x := &AddProjectResourceItemsOutput{}
-	r, err := request.New(o, i, x)
-	if err != nil {
-		return nil, err
-	}
+	
+	
+	
+	
 
-	err = r.Send()
-	if err != nil {
-		return nil, err
-	}
+	
 
-	return x, err
-}
-
-type AddProjectResourceItemsInput struct {
-	ProjectID *string   `json:"project_id" name:"project_id" location:"params"` // Required
-	Resources []*string `json:"resources" name:"resources" location:"params"`   // Required
-}
-
-func (v *AddProjectResourceItemsInput) Validate() error {
-
-	if v.ProjectID == nil {
-		return errors.ParameterRequiredError{
-			ParameterName: "ProjectID",
-			ParentName:    "AddProjectResourceItemsInput",
+	
+	
+	func (s *ProjectService) AddProjectResourceItems(i *AddProjectResourceItemsInput) (*AddProjectResourceItemsOutput, error) {
+		if i == nil {
+			i = &AddProjectResourceItemsInput{}
 		}
-	}
-
-	if len(v.Resources) == 0 {
-		return errors.ParameterRequiredError{
-			ParameterName: "Resources",
-			ParentName:    "AddProjectResourceItemsInput",
+		o := &data.Operation{
+			Config:        s.Config,
+			Properties:    s.Properties,
+			APIName:       "AddProjectResourceItems",
+			RequestMethod: "GET",
 		}
-	}
 
-	return nil
-}
-
-type AddProjectResourceItemsOutput struct {
-	Message     *string   `json:"message" name:"message"`
-	Action      *string   `json:"action" name:"action" location:"elements"`
-	ProjectID   *string   `json:"project_id" name:"project_id" location:"elements"`
-	ResourceIDs []*string `json:"resource_ids" name:"resource_ids" location:"elements"`
-	RetCode     *int      `json:"ret_code" name:"ret_code" location:"elements"`
-	ZoneID      *string   `json:"zone_id" name:"zone_id" location:"elements"`
-}
-
-func (s *ProjectService) DeleteProjectResourceItems(i *DeleteProjectResourceItemsInput) (*DeleteProjectResourceItemsOutput, error) {
-	if i == nil {
-		i = &DeleteProjectResourceItemsInput{}
-	}
-	o := &data.Operation{
-		Config:        s.Config,
-		Properties:    s.Properties,
-		APIName:       "DeleteProjectResourceItems",
-		RequestMethod: "GET",
-	}
-
-	x := &DeleteProjectResourceItemsOutput{}
-	r, err := request.New(o, i, x)
-	if err != nil {
-		return nil, err
-	}
-
-	err = r.Send()
-	if err != nil {
-		return nil, err
-	}
-
-	return x, err
-}
-
-type DeleteProjectResourceItemsInput struct {
-	ProjectID []*string `json:"project_id" name:"project_id" location:"params"` // Required
-	Resources []*string `json:"resources" name:"resources" location:"params"`   // Required
-}
-
-func (v *DeleteProjectResourceItemsInput) Validate() error {
-
-	if len(v.ProjectID) == 0 {
-		return errors.ParameterRequiredError{
-			ParameterName: "ProjectID",
-			ParentName:    "DeleteProjectResourceItemsInput",
+		x := &AddProjectResourceItemsOutput{}
+		r, err := request.New(o, i, x)
+		if err != nil {
+			return nil, err
 		}
-	}
 
-	if len(v.Resources) == 0 {
-		return errors.ParameterRequiredError{
-			ParameterName: "Resources",
-			ParentName:    "DeleteProjectResourceItemsInput",
+		err = r.Send()
+		if err != nil {
+			return nil, err
 		}
+
+		return x, err
 	}
 
-	return nil
-}
-
-type DeleteProjectResourceItemsOutput struct {
-	Message     *string   `json:"message" name:"message"`
-	Action      *string   `json:"action" name:"action" location:"elements"`
-	ProjectID   []*string `json:"project_id" name:"project_id" location:"elements"`
-	ResourceIDs []*string `json:"resource_ids" name:"resource_ids" location:"elements"`
-	RetCode     *int      `json:"ret_code" name:"ret_code" location:"elements"`
-	ZoneID      *string   `json:"zone_id" name:"zone_id" location:"elements"`
-}
-
-func (s *ProjectService) DescribeProjectResourceItems(i *DescribeProjectResourceItemsInput) (*DescribeProjectResourceItemsOutput, error) {
-	if i == nil {
-		i = &DescribeProjectResourceItemsInput{}
-	}
-	o := &data.Operation{
-		Config:        s.Config,
-		Properties:    s.Properties,
-		APIName:       "DescribeProjectResourceItems",
-		RequestMethod: "GET",
+	type AddProjectResourceItemsInput struct {
+		
+			ProjectID *string `json:"project_id" name:"project_id" location:"params"` // Required
+	Resources []*string `json:"resources" name:"resources" location:"params"` // Required
 	}
 
-	x := &DescribeProjectResourceItemsOutput{}
-	r, err := request.New(o, i, x)
-	if err != nil {
-		return nil, err
+	func (v *AddProjectResourceItemsInput) Validate() error {
+		
+	
+
+	
+		
+		
+		
+			
+				if v.ProjectID == nil {
+					return errors.ParameterRequiredError{
+						ParameterName: "ProjectID",
+						ParentName: "AddProjectResourceItemsInput",
+					}
+				}
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+				if len(v.Resources) == 0 {
+					return errors.ParameterRequiredError{
+						ParameterName: "Resources",
+						ParentName: "AddProjectResourceItemsInput",
+					}
+				}
+			
+			
+			
+			
+			
+			
+		
+	
+
+		
+	
+
+	
+
+		
+	
+
+	
+
+
+		return nil
 	}
 
-	err = r.Send()
-	if err != nil {
-		return nil, err
+	type AddProjectResourceItemsOutput struct {
+		Message *string `json:"message" name:"message"`
+			    Action *string `json:"action" name:"action" location:"elements"` 
+	ProjectID *string `json:"project_id" name:"project_id" location:"elements"` 
+	ResourceIDs []*string `json:"resource_ids" name:"resource_ids" location:"elements"` 
+	RetCode *int `json:"ret_code" name:"ret_code" location:"elements"` 
+	ZoneID *string `json:"zone_id" name:"zone_id" location:"elements"` 
 	}
 
-	return x, err
-}
 
-type DescribeProjectResourceItemsInput struct {
-	InGlobal      *int      `json:"in_global" name:"in_global" location:"params"`
-	Limit         *int      `json:"limit" name:"limit" default:"20" location:"params"`
-	Offset        *int      `json:"offset" name:"offset" default:"0" location:"params"`
-	Owner         *string   `json:"owner" name:"owner" location:"params"`
-	ProjectIDs    []*string `json:"project_ids" name:"project_ids" location:"params"`
-	Reserve       *int      `json:"reserve" name:"reserve" location:"params"`
-	ResourceTypes []*string `json:"resource_types" name:"resource_types" location:"params"`
-	Resources     []*string `json:"resources" name:"resources" location:"params"`
-	SortKey       *string   `json:"sort_key" name:"sort_key" location:"params"`
-	Verbose       *int      `json:"verbose" name:"verbose" location:"params"`
-}
+	
+	
+	
+	
 
-func (v *DescribeProjectResourceItemsInput) Validate() error {
+	
 
-	return nil
-}
+	
+	
+	func (s *ProjectService) DeleteProjectResourceItems(i *DeleteProjectResourceItemsInput) (*DeleteProjectResourceItemsOutput, error) {
+		if i == nil {
+			i = &DeleteProjectResourceItemsInput{}
+		}
+		o := &data.Operation{
+			Config:        s.Config,
+			Properties:    s.Properties,
+			APIName:       "DeleteProjectResourceItems",
+			RequestMethod: "GET",
+		}
 
-type DescribeProjectResourceItemsOutput struct {
-	Message                *string                `json:"message" name:"message"`
-	Action                 *string                `json:"action" name:"action" location:"elements"`
-	ProjectResourceItemSet []*ProjectResourceItem `json:"project_resource_item_set" name:"project_resource_item_set" location:"elements"`
-	RetCode                *int                   `json:"ret_code" name:"ret_code" location:"elements"`
-	TotalCount             *int                   `json:"total_count" name:"total_count" location:"elements"`
-}
+		x := &DeleteProjectResourceItemsOutput{}
+		r, err := request.New(o, i, x)
+		if err != nil {
+			return nil, err
+		}
 
-func (s *ProjectService) DescribeProjects(i *DescribeProjectsInput) (*DescribeProjectsOutput, error) {
-	if i == nil {
-		i = &DescribeProjectsInput{}
-	}
-	o := &data.Operation{
-		Config:        s.Config,
-		Properties:    s.Properties,
-		APIName:       "DescribeProjects",
-		RequestMethod: "GET",
+		err = r.Send()
+		if err != nil {
+			return nil, err
+		}
+
+		return x, err
 	}
 
-	x := &DescribeProjectsOutput{}
-	r, err := request.New(o, i, x)
-	if err != nil {
-		return nil, err
+	type DeleteProjectResourceItemsInput struct {
+		
+			ProjectID []*string `json:"project_id" name:"project_id" location:"params"` // Required
+	Resources []*string `json:"resources" name:"resources" location:"params"` // Required
 	}
 
-	err = r.Send()
-	if err != nil {
-		return nil, err
+	func (v *DeleteProjectResourceItemsInput) Validate() error {
+		
+	
+
+	
+		
+		
+		
+
+		
+
+		
+			
+				if len(v.ProjectID) == 0 {
+					return errors.ParameterRequiredError{
+						ParameterName: "ProjectID",
+						ParentName: "DeleteProjectResourceItemsInput",
+					}
+				}
+			
+			
+			
+			
+			
+			
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+				if len(v.Resources) == 0 {
+					return errors.ParameterRequiredError{
+						ParameterName: "Resources",
+						ParentName: "DeleteProjectResourceItemsInput",
+					}
+				}
+			
+			
+			
+			
+			
+			
+		
+	
+
+		
+	
+
+	
+
+		
+	
+
+	
+
+
+		return nil
 	}
 
-	return x, err
-}
+	type DeleteProjectResourceItemsOutput struct {
+		Message *string `json:"message" name:"message"`
+			    Action *string `json:"action" name:"action" location:"elements"` 
+	ProjectID []*string `json:"project_id" name:"project_id" location:"elements"` 
+	ResourceIDs []*string `json:"resource_ids" name:"resource_ids" location:"elements"` 
+	RetCode *int `json:"ret_code" name:"ret_code" location:"elements"` 
+	ZoneID *string `json:"zone_id" name:"zone_id" location:"elements"` 
+	}
 
-type DescribeProjectsInput struct {
-	Limit      *int      `json:"limit" name:"limit" default:"20" location:"params"`
-	Offset     *int      `json:"offset" name:"offset" default:"0" location:"params"`
-	Owner      *string   `json:"owner" name:"owner" location:"params"`
-	ProjectIDs []*string `json:"project_ids" name:"project_ids" location:"params"`
-	Shared     *string   `json:"shared" name:"shared" default:"False" location:"params"`
-	Status     []*string `json:"status" name:"status" location:"params"`
-}
 
-func (v *DescribeProjectsInput) Validate() error {
+	
+	
+	
+	
 
-	return nil
-}
+	
 
-type DescribeProjectsOutput struct {
-	Message    *string    `json:"message" name:"message"`
-	Action     *string    `json:"action" name:"action" location:"elements"`
-	ProjectSet []*Project `json:"project_set" name:"project_set" location:"elements"`
-	RetCode    *int       `json:"ret_code" name:"ret_code" location:"elements"`
-	TotalCount *int       `json:"total_count" name:"total_count" location:"elements"`
-}
+	
+	
+	func (s *ProjectService) DescribeProjectResourceItems(i *DescribeProjectResourceItemsInput) (*DescribeProjectResourceItemsOutput, error) {
+		if i == nil {
+			i = &DescribeProjectResourceItemsInput{}
+		}
+		o := &data.Operation{
+			Config:        s.Config,
+			Properties:    s.Properties,
+			APIName:       "DescribeProjectResourceItems",
+			RequestMethod: "GET",
+		}
+
+		x := &DescribeProjectResourceItemsOutput{}
+		r, err := request.New(o, i, x)
+		if err != nil {
+			return nil, err
+		}
+
+		err = r.Send()
+		if err != nil {
+			return nil, err
+		}
+
+		return x, err
+	}
+
+	type DescribeProjectResourceItemsInput struct {
+		
+			InGlobal *int `json:"in_global" name:"in_global" location:"params"` 
+	Limit *int `json:"limit" name:"limit" default:"20" location:"params"` 
+	Offset *int `json:"offset" name:"offset" default:"0" location:"params"` 
+	Owner *string `json:"owner" name:"owner" location:"params"` 
+	ProjectIDs []*string `json:"project_ids" name:"project_ids" location:"params"` 
+	Reserve *int `json:"reserve" name:"reserve" location:"params"` 
+	ResourceTypes []*string `json:"resource_types" name:"resource_types" location:"params"` 
+	Resources []*string `json:"resources" name:"resources" location:"params"` 
+	SortKey *string `json:"sort_key" name:"sort_key" location:"params"` 
+	Verbose *int `json:"verbose" name:"verbose" location:"params"` 
+	}
+
+	func (v *DescribeProjectResourceItemsInput) Validate() error {
+		
+	
+
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+			
+			
+			
+			
+			
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+			
+			
+			
+			
+			
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+			
+			
+			
+			
+			
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+
+		
+	
+
+	
+
+		
+	
+
+	
+
+
+		return nil
+	}
+
+	type DescribeProjectResourceItemsOutput struct {
+		Message *string `json:"message" name:"message"`
+			    Action *string `json:"action" name:"action" location:"elements"` 
+	ProjectResourceItemSet []*ProjectResourceItem `json:"project_resource_item_set" name:"project_resource_item_set" location:"elements"` 
+	RetCode *int `json:"ret_code" name:"ret_code" location:"elements"` 
+	TotalCount *int `json:"total_count" name:"total_count" location:"elements"` 
+	}
+
+
+	
+	
+	
+	
+
+	
+
+	
+	
+	func (s *ProjectService) DescribeProjects(i *DescribeProjectsInput) (*DescribeProjectsOutput, error) {
+		if i == nil {
+			i = &DescribeProjectsInput{}
+		}
+		o := &data.Operation{
+			Config:        s.Config,
+			Properties:    s.Properties,
+			APIName:       "DescribeProjects",
+			RequestMethod: "GET",
+		}
+
+		x := &DescribeProjectsOutput{}
+		r, err := request.New(o, i, x)
+		if err != nil {
+			return nil, err
+		}
+
+		err = r.Send()
+		if err != nil {
+			return nil, err
+		}
+
+		return x, err
+	}
+
+	type DescribeProjectsInput struct {
+		
+			Limit *int `json:"limit" name:"limit" default:"20" location:"params"` 
+	Offset *int `json:"offset" name:"offset" default:"0" location:"params"` 
+	Owner *string `json:"owner" name:"owner" location:"params"` 
+	ProjectIDs []*string `json:"project_ids" name:"project_ids" location:"params"` 
+	Shared *string `json:"shared" name:"shared" default:"False" location:"params"` 
+	Status []*string `json:"status" name:"status" location:"params"` 
+	}
+
+	func (v *DescribeProjectsInput) Validate() error {
+		
+	
+
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+			
+			
+			
+			
+			
+		
+	
+		
+		
+		
+			
+			
+			
+		
+
+		
+
+		
+	
+		
+		
+		
+
+		
+
+		
+			
+			
+			
+			
+			
+			
+		
+	
+
+		
+	
+
+	
+
+		
+	
+
+	
+
+
+		return nil
+	}
+
+	type DescribeProjectsOutput struct {
+		Message *string `json:"message" name:"message"`
+			    Action *string `json:"action" name:"action" location:"elements"` 
+	ProjectSet []*Project `json:"project_set" name:"project_set" location:"elements"` 
+	RetCode *int `json:"ret_code" name:"ret_code" location:"elements"` 
+	TotalCount *int `json:"total_count" name:"total_count" location:"elements"` 
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
